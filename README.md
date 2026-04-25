@@ -1,10 +1,6 @@
 # SysMon — Real-Time Distributed System Monitoring Platform
 
 <p align="center">
-  <img src="docs/architecture.png" alt="Architecture" width="800"/>
-</p>
-
-<p align="center">
   <img src="https://img.shields.io/badge/C%2B%2B-20-blue?logo=cplusplus" />
   <img src="https://img.shields.io/badge/Go-1.22-00ADD8?logo=go" />
   <img src="https://img.shields.io/badge/Kafka-7.6-231F20?logo=apachekafka" />
@@ -17,7 +13,7 @@
 
 ---
 
-## ✨ Key Features
+## Key Features
 
 | Feature | Detail |
 |---|---|
@@ -32,7 +28,7 @@
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -84,7 +80,7 @@
 
 ---
 
-## 📂 Repository Structure
+## Repository Structure
 
 ```
 sysmon/
@@ -120,7 +116,7 @@ sysmon/
 
 ---
 
-## ⚙️ Technical Deep Dives
+## Technical Deep Dives
 
 ### 1. Thread Pool Architecture (C++)
 
@@ -192,7 +188,7 @@ Stateful, goroutine-safe rule evaluation without external state storage:
 
 ---
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Prerequisites
 
@@ -279,7 +275,7 @@ curl -X POST http://localhost:8080/api/v1/alerts/rules \
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 All components are configured via environment variables:
 
@@ -304,7 +300,7 @@ All components are configured via environment variables:
 
 ---
 
-## 📈 Performance Benchmarks
+## Performance Benchmarks
 
 > Measured on Ubuntu 22.04, 8-core AMD EPYC, 32 GB RAM
 
@@ -320,7 +316,7 @@ All components are configured via environment variables:
 
 ---
 
-## 🛣️ Roadmap
+## Roadmap
 
 - [ ] **WebSocket push** — real-time dashboard streaming without polling
 - [ ] **PromQL-compatible query language** — filter processes by name/CPU/mem
@@ -332,17 +328,3 @@ All components are configured via environment variables:
 
 ---
 
-## 🤝 Contributing
-
-1. Fork the repo
-2. Create a feature branch: `git checkout -b feat/my-feature`
-3. Commit: `git commit -m 'feat: add X'`
-4. Push and open a PR
-
-Please follow [Conventional Commits](https://www.conventionalcommits.org/).
-
----
-
-## 📄 License
-
-MIT © 2024. See [LICENSE](LICENSE) for details.
