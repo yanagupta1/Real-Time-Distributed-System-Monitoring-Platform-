@@ -1,0 +1,26 @@
+# C++ build artifacts
+agent/build/
+agent/*.o
+agent/*.a
+
+# Go
+backend/vendor/
+*.test
+
+# Docker
+.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Generated
+docs/architecture.png
