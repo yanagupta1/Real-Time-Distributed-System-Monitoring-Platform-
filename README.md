@@ -1,4 +1,4 @@
-# SysMon — Real-Time Distributed System Monitoring Platform
+# Real-Time Distributed System Monitoring Platform
 
 <p align="center">
   <img src="https://img.shields.io/badge/C%2B%2B-20-blue?logo=cplusplus" />
