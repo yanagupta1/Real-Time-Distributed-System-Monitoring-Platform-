@@ -34,17 +34,17 @@
 ┌─────────────────────────────────────────────────────────────────────┐
 │                         Host Machine(s)                             │
 │                                                                     │
-│   ┌─────────────────────────────────────────────────────────────┐  │
-│   │              C++ Agent  (sysmon_agent)                      │  │
-│   │                                                             │  │
-│   │   ThreadPool (N workers)                                    │  │
-│   │   ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐                     │  │
-│   │   │ W-0  │ │ W-1  │ │ W-2  │ │ W-3  │  ← PID chunks       │  │
-│   │   └──┬───┘ └──┬───┘ └──┬───┘ └──┬───┘                     │  │
-│   │      └────────┴────────┴────────┘                          │  │
-│   │              ↓ merge + sort by CPU                         │  │
-│   │         SystemSnapshot (JSON / snappy)                     │  │
-│   └─────────────────────────┬───────────────────────────────────┘  │
+│   ┌─────────────────────────────────────────────────────────────┐   │
+│   │              C++ Agent  (sysmon_agent)                      │   │
+│   │                                                             │   │
+│   │   ThreadPool (N workers)                                    │   │
+│   │   ┌──────┐ ┌──────┐ ┌──────┐ ┌──────┐                       │   │
+│   │   │ W-0  │ │ W-1  │ │ W-2  │ │ W-3  │  ← PID chunks         │   │
+│   │   └──┬───┘ └──┬───┘ └──┬───┘ └──┬───┘                       │   │
+│   │      └────────┴────────┴────────┘                           │   │
+│   │              ↓ merge + sort by CPU                          │   │
+│   │         SystemSnapshot (JSON / snappy)                      │   │
+│   └─────────────────────────┬───────────────────────────────────┘   │
 │                             │                                       │
 └─────────────────────────────┼───────────────────────────────────────┘
                               │ librdkafka
@@ -123,8 +123,8 @@ sysmon/
 The agent uses a custom C++20 `ThreadPool` to parallelize `/proc` reads across all discovered PIDs. On a host running 200 processes:
 
 ```
-Sequential polling:  200 × ~2ms = ~400ms per cycle  ❌
-Thread pool (4):     50 PIDs per worker × ~2ms = ~100ms per cycle  ✅  (~50% faster at 4 threads)
+Sequential polling:  200 × ~2ms = ~400ms per cycle  [NOT EFFICIENT]
+Thread pool (4):     50 PIDs per worker × ~2ms = ~100ms per cycle  [EFFICIENT] (~50% faster at 4 threads)
 ```
 
 Each worker receives a non-overlapping chunk of PIDs, reads `stat`, `status`, and `io` files independently (no shared state), and returns results as `std::future<std::vector<ProcessMetrics>>`. The main thread merges, sorts by CPU descending, and caps at top-100 before publishing.
